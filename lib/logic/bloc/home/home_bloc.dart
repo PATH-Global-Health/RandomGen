@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../data/services/authentication.dart';
+import '../../../data/services/authentication.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';

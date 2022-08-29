@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/services/authentication.dart';
-import '../../logic/bloc/home_bloc.dart';
+import '../../logic/bloc/home/home_bloc.dart';
 import 'place_screen.dart';
 
 class HomeScreen extends StatefulWidget {
