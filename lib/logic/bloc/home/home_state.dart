@@ -20,6 +20,13 @@ class SuccessfulLoginState extends HomeState {
   List<Object?> get props => [username];
 }
 
+class FailedLoginState extends HomeState {
+  const FailedLoginState();
+
+  @override
+  List<Object?> get props => [];
+}
+
 class RegisteringServicesState extends HomeState {
   @override
   List<Object?> get props => [];

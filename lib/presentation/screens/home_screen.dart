@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
             }
           },
           builder: (context, state) {
-            if (state is HomeInitial) {
+            if (state is HomeInitial || state is FailedLoginState) {
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 constraints: const BoxConstraints.expand(),
@@ -144,6 +144,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(
                       height: 10,
                     ),
+                    if (state is FailedLoginState)
+                      const Text('Login failed',
+                          style: TextStyle(fontSize: 14, color: Colors.red)),
                     ElevatedButton(
                         onPressed: () {
                           BlocProvider.of<HomeBloc>(context).add(LoginEvent(

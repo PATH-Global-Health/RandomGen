@@ -16,6 +16,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         emit(SuccessfulLoginState(user));
         // for successive login requests
         emit(const HomeInitial());
+      } else {
+        emit(const FailedLoginState());
       }
     });
 
