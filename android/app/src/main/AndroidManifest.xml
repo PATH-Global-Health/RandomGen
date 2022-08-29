@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.randomgen">
+    package="org.path.randomgen">
    <application
-        android:label="randomgen"
+        android:label="RandomGen"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

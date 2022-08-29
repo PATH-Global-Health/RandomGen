@@ -1,4 +1,4 @@
-package com.example.randomgen
+package org.path.randomgen
 
 import io.flutter.embedding.android.FlutterActivity
 
