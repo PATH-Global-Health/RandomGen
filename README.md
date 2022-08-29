@@ -9,7 +9,7 @@ A Flutter project that generates random numbers to help data collectors sample d
 Download or clone this repo by using the link below:
 
 ```
-https://github.com/PATH-Global-Health/randomgen.git
+https://github.com/PATH-Global-Health/RandomGen.git
 ```
 
 **Step 2:**
