@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/services/authentication.dart';
+import '../../data/services/place.dart';
 import '../../logic/bloc/home/home_bloc.dart';
 import 'place_screen.dart';
 
@@ -45,9 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('RandomGen')),
       body: BlocProvider(
-        create: (context) =>
-            HomeBloc(RepositoryProvider.of<AuthenticationService>(context))
-              ..add(RegisterServiceEvent()),
+        create: (context) => HomeBloc(
+            RepositoryProvider.of<AuthenticationService>(context),
+            RepositoryProvider.of<PlaceService>(context))
+          ..add(RegisterServiceEvent()),
         child: BlocConsumer<HomeBloc, HomeState>(
           listener: (context, state) {
             if (state is SuccessfulLoginState) {

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'data/services/authentication.dart';
+import 'data/services/place.dart';
 import 'presentation/screens/home_screen.dart';
 
 void main() async {
@@ -19,13 +20,14 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(create: (context) => AuthenticationService()),
+        RepositoryProvider(create: (context) => PlaceService()),
       ],
       child: MaterialApp(
         title: 'RandomGen',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomeScreen(),
+        home: const HomeScreen(),
       ),
     );
   }
