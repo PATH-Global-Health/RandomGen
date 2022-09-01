@@ -5,6 +5,8 @@ import '../../data/services/place.dart';
 import '../../logic/bloc/place/place_bloc.dart';
 
 class PlaceScreen extends StatelessWidget {
+  static const routeName = '/places';
+
   final String username;
   const PlaceScreen({Key? key, required this.username}) : super(key: key);
 

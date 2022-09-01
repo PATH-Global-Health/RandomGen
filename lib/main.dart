@@ -4,15 +4,17 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import 'data/services/authentication.dart';
 import 'data/services/place.dart';
-import 'presentation/screens/home_screen.dart';
+import 'presentation/router/app_router.dart';
 
 void main() async {
   await Hive.initFlutter();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final AppRouter _appRouter = AppRouter();
+
+  MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const HomeScreen(),
+        onGenerateRoute: _appRouter.onGenerateRoute,
       ),
     );
   }

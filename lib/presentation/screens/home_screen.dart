@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data/dao/place_screen_arguments.dart';
 import '../../data/services/authentication.dart';
 import '../../data/services/place.dart';
 import '../../logic/bloc/home/home_bloc.dart';
 import 'place_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const routeName = '/';
+
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -53,11 +56,14 @@ class _HomeScreenState extends State<HomeScreen> {
         child: BlocConsumer<HomeBloc, HomeState>(
           listener: (context, state) {
             if (state is SuccessfulLoginState) {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => PlaceScreen(username: state.username),
-                ),
-              );
+              final args = PlaceScreenArguments(state.username);
+              Navigator.of(context)
+                  .pushReplacementNamed(PlaceScreen.routeName, arguments: args);
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (context) => PlaceScreen(username: state.username),
+              //   ),
+              // );
             }
           },
           builder: (context, state) {
