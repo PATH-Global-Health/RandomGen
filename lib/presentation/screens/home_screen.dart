@@ -18,13 +18,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
   bool isPasswordTextVisible = false;
   bool isUsernameTextEmpty = true;
 
   void _changeUsernameTextEmpty() {
-    if (usernameController.text.isEmpty == false &&
+    if (_usernameController.text.isEmpty == false &&
         isUsernameTextEmpty == true) {
       setState(() {
         isUsernameTextEmpty = false;
@@ -35,12 +35,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    usernameController.addListener(_changeUsernameTextEmpty);
+    _usernameController.addListener(_changeUsernameTextEmpty);
   }
 
   @override
   void dispose() {
-    usernameController.dispose();
+    _usernameController.dispose();
     super.dispose();
   }
 
@@ -93,17 +93,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     TextField(
                       // decoration: const InputDecoration(labelText: 'Username'),
-                      controller: usernameController,
+                      controller: _usernameController,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.person),
                         suffixIcon: isUsernameTextEmpty
                             ? const Text('')
                             : GestureDetector(
                                 onTap: () {
-                                  usernameController.clear();
+                                  _usernameController.clear();
                                   setState(() {
                                     isUsernameTextEmpty =
-                                        usernameController.text.isEmpty;
+                                        _usernameController.text.isEmpty;
                                   });
                                 },
                                 child: const Icon(Icons.close),
@@ -112,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide:
-                              const BorderSide(color: Colors.red, width: 1),
+                              const BorderSide(color: Colors.blue, width: 1),
                         ),
                       ),
                     ),
@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 16,
                     ),
                     TextField(
-                      controller: passwordController,
+                      controller: _passwordController,
                       // decoration: const InputDecoration(labelText: 'Passsword'),
                       decoration: InputDecoration(
                         // icon: Icon(Icons.mail),
@@ -139,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                           borderSide:
-                              const BorderSide(color: Colors.red, width: 1),
+                              const BorderSide(color: Colors.blue, width: 1),
                         ),
                       ),
                       obscureText: !isPasswordTextVisible,
@@ -154,12 +154,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     if (state is FailedLoginState)
                       const Text('Login failed',
-                          style: TextStyle(fontSize: 14, color: Colors.red)),
+                          style: TextStyle(fontSize: 14, color: Colors.blue)),
                     ElevatedButton(
                         onPressed: () {
                           BlocProvider.of<HomeBloc>(context).add(LoginEvent(
-                              usernameController.text,
-                              int.parse(passwordController.text)));
+                              _usernameController.text,
+                              int.parse(_passwordController.text)));
                         },
                         child: const SizedBox(
                           height: 40,
