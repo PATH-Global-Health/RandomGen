@@ -12,3 +12,15 @@ class LoadPlacesEvent extends PlaceEvent {
   @override
   List<Object> get props => [username];
 }
+
+class AddPlaceEvent extends PlaceEvent {
+  final String name;
+  final int maxLimit;
+  final int sampleSize;
+  final String username;
+
+  const AddPlaceEvent(this.name, this.maxLimit, this.sampleSize, this.username);
+
+  @override
+  List<Object?> get props => [name, maxLimit, sampleSize];
+}

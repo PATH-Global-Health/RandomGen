@@ -16,5 +16,12 @@ class PlaceBloc extends Bloc<PlaceEvent, PlaceState> {
 
       emit(PlacesLoadedState(places));
     });
+
+    on<AddPlaceEvent>((event, emit) {
+      _placeService.addPlace(
+          event.name, event.username, event.maxLimit, event.sampleSize);
+
+      add(LoadPlacesEvent(event.username));
+    });
   }
 }
