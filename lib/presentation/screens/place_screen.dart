@@ -2,15 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:randomgen/data/dao/place_dao.dart';
 
-import '../../data/services/place.dart';
 import '../../logic/bloc/place/place_bloc.dart';
 import '../widgets/create_new_task.dart';
 
-class PlaceScreen extends StatelessWidget {
+class PlaceScreen extends StatefulWidget {
   static const routeName = '/places';
 
   final String username;
   const PlaceScreen({Key? key, required this.username}) : super(key: key);
+
+  @override
+  State<PlaceScreen> createState() => _PlaceScreenState();
+}
+
+class _PlaceScreenState extends State<PlaceScreen> {
+  bool _isNotInit = true;
+
+  @override
+  void didChangeDependencies() {
+    if (_isNotInit) {
+      context.read<PlaceBloc>().add(LoadPlacesEvent(widget.username));
+      _isNotInit = false;
+    }
+
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +67,8 @@ class PlaceScreen extends StatelessWidget {
           ).then((result) {
             if (result != null) {
               final place = PlaceDAO.fromJson(result);
-              context.read<PlaceBloc>().add(AddPlaceEvent(
-                  place.name!, place.maxLimit!, place.sampleSize!, username));
+              context.read<PlaceBloc>().add(AddPlaceEvent(place.name!,
+                  place.maxLimit!, place.sampleSize!, widget.username));
             }
           });
         },
