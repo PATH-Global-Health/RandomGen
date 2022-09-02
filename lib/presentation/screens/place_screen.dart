@@ -39,10 +39,50 @@ class _PlaceScreenState extends State<PlaceScreen> {
                 ? ListView(
                     children: [
                       ...state.places.map(
-                        (e) => ListTile(
-                          title: Text(e.name),
-                          trailing:
-                              Checkbox(value: e.completed, onChanged: (val) {}),
+                        (e) => Column(
+                          children: [
+                            ListTile(
+                              leading: Checkbox(
+                                  value: e.completed, onChanged: (val) {}),
+                              title: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                    5.0, 0.0, 0.0, 0.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      e.name,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16.0,
+                                      ),
+                                    ),
+                                    const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 2.0)),
+                                    Text(
+                                      'Range (1 - ${e.maxLimit})',
+                                      style: const TextStyle(fontSize: 12.0),
+                                    ),
+                                    const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 1.0)),
+                                    Text(
+                                      'Sample size - ${e.sampleSize}',
+                                      style: const TextStyle(fontSize: 12.0),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              enabled: e.completed == false,
+                              trailing: const Icon(Icons.delete),
+                            ),
+                            const Divider(
+                              color: Colors.grey,
+                            ),
+                            const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 1.0))
+                          ],
                         ),
                       ),
                     ],
