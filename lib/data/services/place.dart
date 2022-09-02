@@ -23,9 +23,9 @@ class PlaceService {
     _places.add(Place(username, name, false, maxLimit, sampleSize));
   }
 
-  void removePlace(final String name, final String username) async {
+  void removePlace(final int key, final String username) async {
     final placeToRemove = _places.values.firstWhere(
-        (element) => element.name == name && element.user == username);
+        (element) => element.key == key && element.user == username);
     await placeToRemove.delete();
   }
 

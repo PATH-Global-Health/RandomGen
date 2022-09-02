@@ -28,5 +28,10 @@ class PlaceBloc extends Bloc<PlaceEvent, PlaceState> {
       await _placeService.tooglePlace(event.key, event.username);
       add(LoadPlacesEvent(event.username));
     });
+
+    on<RemovePlaceEvent>((event, emit) async {
+      _placeService.removePlace(event.key, event.username);
+      add(LoadPlacesEvent(event.username));
+    });
   }
 }

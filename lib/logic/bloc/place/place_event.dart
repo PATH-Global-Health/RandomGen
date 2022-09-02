@@ -34,3 +34,13 @@ class TooglePlaceEvent extends PlaceEvent {
   @override
   List<Object?> get props => [key, username];
 }
+
+class RemovePlaceEvent extends PlaceEvent {
+  final int key;
+  final String username;
+
+  const RemovePlaceEvent(this.key, this.username);
+
+  @override
+  List<Object?> get props => [key, username];
+}
