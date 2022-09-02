@@ -43,33 +43,51 @@ class _PlaceScreenState extends State<PlaceScreen> {
                           children: [
                             ListTile(
                               leading: Checkbox(
-                                  value: e.completed, onChanged: (val) {}),
+                                  checkColor: Colors.white,
+                                  activeColor: Colors.grey,
+                                  value: e.completed,
+                                  onChanged: (val) {
+                                    context
+                                        .read<PlaceBloc>()
+                                        .add(TooglePlaceEvent(e.key, e.user));
+                                  }),
                               title: Padding(
                                 padding: const EdgeInsets.fromLTRB(
                                     5.0, 0.0, 0.0, 0.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
+                                  children: [
                                     Text(
                                       e.name,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0,
-                                      ),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16.0,
+                                          decoration: e.completed == true
+                                              ? TextDecoration.lineThrough
+                                              : null),
                                     ),
                                     const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 2.0)),
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 2.0),
+                                    ),
                                     Text(
                                       'Range (1 - ${e.maxLimit})',
-                                      style: const TextStyle(fontSize: 12.0),
+                                      style: TextStyle(
+                                          fontSize: 12.0,
+                                          decoration: e.completed == true
+                                              ? TextDecoration.lineThrough
+                                              : null),
                                     ),
                                     const Padding(
                                         padding: EdgeInsets.symmetric(
                                             vertical: 1.0)),
                                     Text(
                                       'Sample size - ${e.sampleSize}',
-                                      style: const TextStyle(fontSize: 12.0),
+                                      style: TextStyle(
+                                          fontSize: 12.0,
+                                          decoration: e.completed == true
+                                              ? TextDecoration.lineThrough
+                                              : null),
                                     ),
                                   ],
                                 ),

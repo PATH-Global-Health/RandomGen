@@ -24,3 +24,13 @@ class AddPlaceEvent extends PlaceEvent {
   @override
   List<Object?> get props => [name, maxLimit, sampleSize];
 }
+
+class TooglePlaceEvent extends PlaceEvent {
+  final int key;
+  final String username;
+
+  const TooglePlaceEvent(this.key, this.username);
+
+  @override
+  List<Object?> get props => [key, username];
+}

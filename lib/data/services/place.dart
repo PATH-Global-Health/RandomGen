@@ -11,9 +11,11 @@ class PlaceService {
   }
 
   List<Place> getPlaces(final String username) {
-    final places = _places.values.where((element) => element.user == username);
+    final places =
+        _places.values.where((element) => element.user == username).toList();
+    places.sort((a, b) => a.completed == false ? 0 : 1);
 
-    return places.toList();
+    return places;
   }
 
   void addPlace(
@@ -27,15 +29,24 @@ class PlaceService {
     await placeToRemove.delete();
   }
 
-  Future<void> updatePlace(
-      final String name, final String username, int maxLimit, sampleSize,
+  Future<void> updatePlace(final int key, final String name,
+      final String username, final int maxLimit, final int sampleSize,
       {final bool? completed}) async {
     final placeToEdit = _places.values.firstWhere(
-        (element) => element.name == name && element.user == username);
-    final index = placeToEdit.key as int;
+        (element) => element.key == key && element.user == username);
     await _places.put(
-        index,
+        key,
         Place(username, name, completed ?? placeToEdit.completed, maxLimit,
             sampleSize));
+  }
+
+  Future<void> tooglePlace(final int key, final String username) async {
+    final placeToEdit = _places.values.firstWhere(
+        (element) => element.key == key && element.user == username);
+
+    await _places.put(
+        key,
+        Place(placeToEdit.user, placeToEdit.name, !placeToEdit.completed,
+            placeToEdit.maxLimit, placeToEdit.sampleSize));
   }
 }
