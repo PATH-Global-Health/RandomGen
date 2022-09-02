@@ -7,7 +7,7 @@ class AuthenticationService {
 
   Future<void> init() async {
     Hive.registerAdapter(UserAdapter());
-    _users = await Hive.openBox<User>('userBox');
+    _users = await Hive.openBox<User>('users');
 
     //Initialize user table with one user.
     if (!_users.isNotEmpty) {
