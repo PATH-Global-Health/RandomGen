@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/model/place.dart';
 import '../../logic/bloc/place/place_bloc.dart';
+import 'confirm_dialog.dart';
 
 class PlaceRow extends StatelessWidget {
   final Place place;
@@ -65,9 +66,18 @@ class PlaceRow extends StatelessWidget {
             icon: const Icon(Icons.delete),
             tooltip: 'Remove',
             onPressed: () {
-              context
-                  .read<PlaceBloc>()
-                  .add(RemovePlaceEvent(place.key, place.user));
+              showDialog(
+                context: context,
+                builder: (context) => ConfirmDialog(
+                    title: 'Please Confirm',
+                    content: 'Are you sure to remove ${place.name}?'),
+              ).then((result) {
+                if (result != null && result == 'Yes') {
+                  context
+                      .read<PlaceBloc>()
+                      .add(RemovePlaceEvent(place.key, place.user));
+                }
+              });
             },
           ),
         ),

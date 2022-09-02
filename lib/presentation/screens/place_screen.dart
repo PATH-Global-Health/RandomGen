@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:randomgen/data/dao/place_dao.dart';
 
+import '../../data/dao/place_dao.dart';
 import '../../logic/bloc/place/place_bloc.dart';
 import '../widgets/create_new_task.dart';
 import '../widgets/place_row.dart';
@@ -49,7 +49,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showDialog<String>(
+          showDialog(
             context: context,
             builder: (context) => const Dialog(
               shape: RoundedRectangleBorder(
