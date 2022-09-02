@@ -86,9 +86,16 @@ class _CreateNewPlaceState extends State<CreateNewPlace> {
                     FilteringTextInputFormatter.digitsOnly
                   ],
                   validator: (value) {
-                    if (value == null || double.tryParse(value) == null) {
+                    if (value == null || int.tryParse(value) == null) {
                       return "Sample size is required";
                     }
+                    if (_maxLimitController.text.isNotEmpty) {
+                      if (int.tryParse(value)! >
+                          int.tryParse(_maxLimitController.text)!) {
+                        return "Sample size should be less than maximum limit";
+                      }
+                    }
+
                     return null;
                   }),
               const SizedBox(height: 16),
