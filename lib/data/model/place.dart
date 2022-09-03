@@ -5,15 +5,17 @@ part 'place.g.dart';
 @HiveType(typeId: 2)
 class Place extends HiveObject {
   @HiveField(0)
-  final String user;
+  String user;
   @HiveField(1)
-  final String name;
+  String name;
   @HiveField(2)
-  final bool completed;
+  bool completed;
   @HiveField(3)
-  final int maxLimit;
+  int maxLimit;
   @HiveField(4)
-  final int sampleSize;
+  int sampleSize;
+  @HiveField(5)
+  HiveList? samples;
 
   Place(this.user, this.name, this.completed, this.maxLimit, this.sampleSize);
 }

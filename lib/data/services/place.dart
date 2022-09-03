@@ -18,9 +18,11 @@ class PlaceService {
     return places;
   }
 
-  void addPlace(
-      final String name, final String username, int maxLimit, int sampleSize) {
-    _places.add(Place(username, name, false, maxLimit, sampleSize));
+  Future<Place> addPlace(final String name, final String username, int maxLimit,
+      int sampleSize) async {
+    var p = Place(username, name, false, maxLimit, sampleSize);
+    await _places.add(p);
+    return p;
   }
 
   void removePlace(final int key, final String username) async {

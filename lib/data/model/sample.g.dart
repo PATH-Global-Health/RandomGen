@@ -1,46 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'place.dart';
+part of 'sample.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class PlaceAdapter extends TypeAdapter<Place> {
+class SampleAdapter extends TypeAdapter<Sample> {
   @override
-  final int typeId = 2;
+  final int typeId = 3;
 
   @override
-  Place read(BinaryReader reader) {
+  Sample read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Place(
-      fields[0] as String,
+    return Sample(
+      fields[0] as int,
       fields[1] as String,
       fields[2] as bool,
-      fields[3] as int,
-      fields[4] as int,
-    )..samples = (fields[5] as HiveList?)?.castHiveList();
+    );
   }
 
   @override
-  void write(BinaryWriter writer, Place obj) {
+  void write(BinaryWriter writer, Sample obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.user)
+      ..write(obj.sample)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.completed)
-      ..writeByte(3)
-      ..write(obj.maxLimit)
-      ..writeByte(4)
-      ..write(obj.sampleSize)
-      ..writeByte(5)
-      ..write(obj.samples);
+      ..write(obj.completed);
   }
 
   @override
@@ -49,7 +41,7 @@ class PlaceAdapter extends TypeAdapter<Place> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is PlaceAdapter &&
+      other is SampleAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

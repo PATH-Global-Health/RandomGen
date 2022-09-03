@@ -6,6 +6,7 @@ import 'package:randomgen/logic/bloc/place/place_bloc.dart';
 
 import 'data/services/authentication.dart';
 import 'data/services/place.dart';
+import 'data/services/sample.dart';
 import 'presentation/router/app_router.dart';
 
 void main() async {
@@ -25,15 +26,18 @@ class MyApp extends StatelessWidget {
       providers: [
         RepositoryProvider(create: (context) => AuthenticationService()),
         RepositoryProvider(create: (context) => PlaceService()),
+        RepositoryProvider(create: (context) => SampleService()),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
               create: (context) => HomeBloc(
                   context.read<AuthenticationService>(),
-                  context.read<PlaceService>())),
+                  context.read<PlaceService>(),
+                  context.read<SampleService>())),
           BlocProvider(
-              create: (context) => PlaceBloc(context.read<PlaceService>()))
+              create: (context) => PlaceBloc(
+                  context.read<PlaceService>(), context.read<SampleService>()))
         ],
         child: MaterialApp(
           title: 'RandomGen',
