@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data/dao/sample_dao.dart';
 import '../../data/model/sample.dart';
+import '../../logic/bloc/sample/sample_bloc.dart';
+import 'rename_sample_name.dart';
 
 class SampleRow extends StatelessWidget {
   final Sample sample;
+  final int placeId;
 
-  const SampleRow(this.sample, {Key? key}) : super(key: key);
+  const SampleRow({Key? key, required this.sample, required this.placeId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,18 +58,25 @@ class SampleRow extends StatelessWidget {
             icon: const Icon(Icons.edit),
             tooltip: 'Edit',
             onPressed: () {
-              // showDialog(
-              //   context: context,
-              //   builder: (context) => ConfirmDialog(
-              //       title: 'Please Confirm',
-              //       content: 'Are you sure to remove ${place.name}?'),
-              // ).then((result) {
-              //   if (result != null && result == 'Yes') {
-              //     context
-              //         .read<SampleBloc>()
-              //         .add(RemovePlaceEvent(place.key, place.user));
-              //   }
-              // });
+              showDialog(
+                context: context,
+                builder: (context) => Dialog(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
+                    ),
+                  ),
+                  child:
+                      RenameSampleName(sampleId: sample.key, name: sample.name),
+                ),
+              ).then((result) {
+                if (result != null) {
+                  final s = SampleDAO.fromJson(result);
+                  context
+                      .read<SampleBloc>()
+                      .add(EditSampleEvent(s.sampleId!, s.name!, placeId));
+                }
+              });
             },
           ),
         ),

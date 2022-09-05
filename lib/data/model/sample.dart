@@ -5,11 +5,11 @@ part 'sample.g.dart';
 @HiveType(typeId: 3)
 class Sample extends HiveObject {
   @HiveField(0)
-  final int sample;
+  int sample;
   @HiveField(1)
-  final String name;
+  String name;
   @HiveField(2)
-  final bool completed;
+  bool completed;
 
   Sample(this.sample, this.name, this.completed);
 }

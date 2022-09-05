@@ -23,4 +23,11 @@ class SampleService {
     await _sample.add(s);
     return s;
   }
+
+  void updateSample(int sampleId, String name) async {
+    final sampleToEdit =
+        _sample.values.firstWhere((element) => element.key == sampleId);
+    sampleToEdit.name = name;
+    await _sample.put(sampleId, sampleToEdit);
+  }
 }

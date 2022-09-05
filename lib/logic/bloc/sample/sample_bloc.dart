@@ -16,7 +16,14 @@ class SampleBloc extends Bloc<SampleEvent, SampleState> {
     on<LoadSamplesEvent>((event, emit) {
       final samples = _placeService.getRelatedSamples(event.placeId);
 
+      emit(SampleInitial()); // this state will help to refresh the screen
       emit(SamplesLoadedState(samples));
+    });
+
+    on<EditSampleEvent>((event, emit) {
+      _sampleService.updateSample(event.sampleId, event.name);
+
+      add(LoadSamplesEvent(event.placeId));
     });
   }
 }
