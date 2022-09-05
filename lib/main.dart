@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:randomgen/logic/bloc/home/home_bloc.dart';
-import 'package:randomgen/logic/bloc/place/place_bloc.dart';
 
 import 'data/services/authentication.dart';
 import 'data/services/place.dart';
 import 'data/services/sample.dart';
+import 'logic/bloc/home/home_bloc.dart';
+import 'logic/bloc/place/place_bloc.dart';
+import 'logic/bloc/sample/sample_bloc.dart';
 import 'presentation/router/app_router.dart';
 
 void main() async {
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
                   context.read<SampleService>())),
           BlocProvider(
               create: (context) => PlaceBloc(
+                  context.read<PlaceService>(), context.read<SampleService>())),
+          BlocProvider(
+              create: (context) => SampleBloc(
                   context.read<PlaceService>(), context.read<SampleService>()))
         ],
         child: MaterialApp(

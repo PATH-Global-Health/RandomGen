@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:randomgen/presentation/widgets/progress_indicator.dart';
 
 import '../../data/dao/place_dao.dart';
 import '../../logic/bloc/home/home_bloc.dart';
@@ -179,16 +180,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             );
           }
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
-                CircularProgressIndicator(),
-                SizedBox(height: 10.0),
-                Text('Initializing...'),
-              ],
-            ),
+          return const Center(
+            child: IndicateProgress(message: 'Initializing...'),
           );
         },
       ),

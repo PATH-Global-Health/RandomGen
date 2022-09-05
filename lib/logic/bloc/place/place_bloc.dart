@@ -11,7 +11,7 @@ import '../../../data/services/sample.dart';
 part 'place_event.dart';
 part 'place_state.dart';
 
-class PlaceBloc extends Bloc<PlaceEvent, PlaceState> {
+class PlaceBloc extends Bloc<PlaceEvent, SampleState> {
   final PlaceService _placeService;
   final SampleService _sampleService;
 

@@ -1,15 +1,15 @@
 part of 'place_bloc.dart';
 
-abstract class PlaceState extends Equatable {
-  const PlaceState();
+abstract class SampleState extends Equatable {
+  const SampleState();
 }
 
-class PlaceInitial extends PlaceState {
+class PlaceInitial extends SampleState {
   @override
   List<Object> get props => [];
 }
 
-class PlacesLoadedState extends PlaceState {
+class PlacesLoadedState extends SampleState {
   final List<Place> places;
 
   const PlacesLoadedState(this.places);

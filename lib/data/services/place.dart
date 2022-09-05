@@ -1,6 +1,7 @@
 import 'package:hive/hive.dart';
 
 import '../model/place.dart';
+import '../model/sample.dart';
 
 class PlaceService {
   late Box<Place> _places;
@@ -16,6 +17,17 @@ class PlaceService {
     places.sort((a, b) => a.completed == false ? 0 : 1);
 
     return places;
+  }
+
+  List<Sample> getRelatedSamples(final int placeId) {
+    final place =
+        _places.values.firstWhere((element) => element.key == placeId);
+    List<Sample> samples = [];
+    if (place.samples != null) {
+      samples = (place.samples as HiveList).castHiveList();
+      samples.sort((a, b) => a.sample.compareTo(b.sample));
+    }
+    return samples;
   }
 
   Future<Place> addPlace(final String name, final String username, int maxLimit,

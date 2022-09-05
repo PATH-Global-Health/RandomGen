@@ -5,6 +5,7 @@ import '../../data/dao/place_dao.dart';
 import '../../logic/bloc/place/place_bloc.dart';
 import '../widgets/create_new_task.dart';
 import '../widgets/place_row.dart';
+import '../widgets/progress_indicator.dart';
 
 class PlaceScreen extends StatefulWidget {
   static const routeName = '/places';
@@ -33,7 +34,7 @@ class _PlaceScreenState extends State<PlaceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Places')),
-      body: BlocBuilder<PlaceBloc, PlaceState>(
+      body: BlocBuilder<PlaceBloc, SampleState>(
         builder: (context, state) {
           if (state is PlacesLoadedState) {
             return state.places.isNotEmpty
@@ -44,7 +45,9 @@ class _PlaceScreenState extends State<PlaceScreen> {
                   )
                 : const Center(child: Text('No places'));
           }
-          return Container();
+          return const Center(
+            child: IndicateProgress(message: 'Loading...'),
+          );
         },
       ),
       floatingActionButton: FloatingActionButton(
