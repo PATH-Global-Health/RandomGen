@@ -17,5 +17,6 @@ class Place extends HiveObject {
   @HiveField(5)
   HiveList? samples;
 
-  Place(this.user, this.name, this.completed, this.maxLimit, this.sampleSize);
+  Place(this.user, this.name, this.completed, this.maxLimit, this.sampleSize,
+      this.samples);
 }

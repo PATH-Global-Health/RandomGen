@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:hive/hive.dart';
 import 'package:randomgen/data/model/sample.dart';
 
 import '../../../data/services/place.dart';
@@ -15,7 +14,7 @@ class SampleBloc extends Bloc<SampleEvent, SampleState> {
 
   SampleBloc(this._placeService, this._sampleService) : super(SampleInitial()) {
     on<LoadSamplesEvent>((event, emit) {
-      final samples = _placeService.getRelatedSamples(event.sampleId);
+      final samples = _placeService.getRelatedSamples(event.placeId);
 
       emit(SamplesLoadedState(samples));
     });

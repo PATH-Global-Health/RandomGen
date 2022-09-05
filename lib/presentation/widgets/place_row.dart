@@ -91,7 +91,7 @@ class PlaceRow extends StatelessWidget {
         ],
       ),
       onTap: () {
-        final args = SampleDAO(sampleId: place.key);
+        final args = SampleDAO(placeId: place.key);
         Navigator.of(context)
             .pushNamed(SampleScreen.routeName, arguments: args);
       },

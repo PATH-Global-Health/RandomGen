@@ -8,10 +8,10 @@ abstract class SampleEvent extends Equatable {
 }
 
 class LoadSamplesEvent extends SampleEvent {
-  final int sampleId;
+  final int placeId;
 
-  const LoadSamplesEvent(this.sampleId);
+  const LoadSamplesEvent(this.placeId);
 
   @override
-  List<Object> get props => [sampleId];
+  List<Object> get props => [placeId];
 }

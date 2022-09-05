@@ -22,7 +22,8 @@ class PlaceAdapter extends TypeAdapter<Place> {
       fields[2] as bool,
       fields[3] as int,
       fields[4] as int,
-    )..samples = (fields[5] as HiveList?)?.castHiveList();
+      (fields[5] as HiveList?)?.castHiveList(),
+    );
   }
 
   @override

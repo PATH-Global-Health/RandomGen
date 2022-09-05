@@ -8,8 +8,8 @@ import '../widgets/sample_row.dart';
 class SampleScreen extends StatefulWidget {
   static const routeName = '/samples';
 
-  final int sampleId;
-  const SampleScreen({Key? key, required this.sampleId}) : super(key: key);
+  final int placeId;
+  const SampleScreen({Key? key, required this.placeId}) : super(key: key);
 
   @override
   State<SampleScreen> createState() => _SampleScreenState();
@@ -21,7 +21,7 @@ class _SampleScreenState extends State<SampleScreen> {
   @override
   void didChangeDependencies() {
     if (_isNotInit) {
-      context.read<SampleBloc>().add(LoadSamplesEvent(widget.sampleId));
+      context.read<SampleBloc>().add(LoadSamplesEvent(widget.placeId));
       _isNotInit = false;
     }
 

@@ -19,7 +19,7 @@ class AppRouter {
       case SampleScreen.routeName:
         return MaterialPageRoute(builder: (context) {
           final args = routeSettings.arguments as SampleDAO;
-          return SampleScreen(sampleId: args.sampleId!);
+          return SampleScreen(placeId: args.placeId!);
         });
       default:
         return null;
