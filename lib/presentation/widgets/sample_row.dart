@@ -29,7 +29,8 @@ class SampleRow extends StatelessWidget {
               }),
           title: Padding(
             padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   sample.sample.toString(),
@@ -44,7 +45,6 @@ class SampleRow extends StatelessWidget {
                 Text(
                   sample.name,
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
                       fontSize: 16.0,
                       decoration: sample.completed == true
                           ? TextDecoration.lineThrough
