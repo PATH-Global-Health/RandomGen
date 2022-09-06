@@ -30,4 +30,12 @@ class SampleService {
     sampleToEdit.name = name;
     await _sample.put(sampleId, sampleToEdit);
   }
+
+  Future<void> toogleSample(final int sampleId) async {
+    final sampleToEdit =
+        _sample.values.firstWhere((element) => element.key == sampleId);
+    sampleToEdit.completed = !sampleToEdit.completed;
+
+    await _sample.put(sampleId, sampleToEdit);
+  }
 }

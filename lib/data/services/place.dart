@@ -27,6 +27,7 @@ class PlaceService {
     if (place.samples != null) {
       samples = (place.samples as HiveList).castHiveList();
       samples.sort((a, b) => a.sample.compareTo(b.sample));
+      samples.sort((a, b) => a.completed == false ? 0 : 1);
     }
     return samples;
   }

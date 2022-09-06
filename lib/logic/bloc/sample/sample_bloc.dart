@@ -25,5 +25,10 @@ class SampleBloc extends Bloc<SampleEvent, SampleState> {
 
       add(LoadSamplesEvent(event.placeId));
     });
+
+    on<ToogleSampleEvent>((event, emit) async {
+      await _sampleService.toogleSample(event.sampleId);
+      add(LoadSamplesEvent(event.placeId));
+    });
   }
 }

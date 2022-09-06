@@ -23,9 +23,9 @@ class SampleRow extends StatelessWidget {
               activeColor: Colors.grey,
               value: sample.completed,
               onChanged: (val) {
-                // context
-                //     .read<SampleBloc>()
-                //     .add(ToogleSampleEvent(sample.key));
+                context
+                    .read<SampleBloc>()
+                    .add(ToogleSampleEvent(sample.key, placeId));
               }),
           title: Padding(
             padding: const EdgeInsets.fromLTRB(5.0, 0.0, 0.0, 0.0),
@@ -34,10 +34,12 @@ class SampleRow extends StatelessWidget {
               children: [
                 Text(
                   sample.sample.toString(),
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black),
+                      color: sample.completed ? Colors.grey : Colors.black,
+                      decoration:
+                          sample.completed ? TextDecoration.lineThrough : null),
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.0),

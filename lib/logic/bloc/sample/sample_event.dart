@@ -2,9 +2,6 @@ part of 'sample_bloc.dart';
 
 abstract class SampleEvent extends Equatable {
   const SampleEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
 class LoadSamplesEvent extends SampleEvent {
@@ -27,4 +24,14 @@ class EditSampleEvent extends SampleEvent {
 
   @override
   List<Object> get props => [sampleId, name, placeId];
+}
+
+class ToogleSampleEvent extends SampleEvent {
+  final int sampleId;
+  final int placeId;
+
+  const ToogleSampleEvent(this.sampleId, this.placeId);
+
+  @override
+  List<Object?> get props => [sampleId, placeId];
 }
