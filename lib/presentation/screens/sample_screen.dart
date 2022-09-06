@@ -38,10 +38,12 @@ class _SampleScreenState extends State<SampleScreen> {
             return state.samples.isNotEmpty
                 ? ListView(
                     children: [
-                      ...state.samples.map((sample) => SampleRow(
-                            sample: sample,
-                            placeId: widget.placeId,
-                          )),
+                      ...state.samples.map(
+                        (sample) => SampleRow(
+                          sample: sample,
+                          placeId: widget.placeId,
+                        ),
+                      ),
                     ],
                   )
                 : const Center(child: Text('No samples'));
