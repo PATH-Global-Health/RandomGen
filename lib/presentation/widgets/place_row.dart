@@ -36,7 +36,7 @@ class PlaceRow extends StatelessWidget {
                     place.name,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16.0,
+                        fontSize: 20.0,
                         decoration: place.completed
                             ? TextDecoration.lineThrough
                             : null),
@@ -47,7 +47,7 @@ class PlaceRow extends StatelessWidget {
                   Text(
                     'Range (1 - ${place.maxLimit})',
                     style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 16.0,
                         decoration: place.completed
                             ? TextDecoration.lineThrough
                             : null),
@@ -56,7 +56,7 @@ class PlaceRow extends StatelessWidget {
                   Text(
                     'Sample size - ${place.sampleSize}',
                     style: TextStyle(
-                        fontSize: 12.0,
+                        fontSize: 16.0,
                         decoration: place.completed == true
                             ? TextDecoration.lineThrough
                             : null),
