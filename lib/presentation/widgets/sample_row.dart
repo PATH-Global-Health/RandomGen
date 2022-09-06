@@ -56,31 +56,34 @@ class SampleRow extends StatelessWidget {
             ),
           ),
           enabled: sample.completed == false,
-          trailing: IconButton(
-            icon: const Icon(Icons.edit),
-            tooltip: 'Edit',
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) => Dialog(
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
-                    ),
-                  ),
-                  child:
-                      RenameSampleName(sampleId: sample.key, name: sample.name),
+          trailing: sample.completed
+              ? null
+              : IconButton(
+                  icon: const Icon(Icons.edit),
+                  tooltip: 'Edit',
+                  onPressed: () {
+                    if (sample.completed == false) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => Dialog(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                          child: RenameSampleName(
+                              sampleId: sample.key, name: sample.name),
+                        ),
+                      ).then((result) {
+                        if (result != null) {
+                          final s = SampleDAO.fromJson(result);
+                          context.read<SampleBloc>().add(
+                              EditSampleEvent(s.sampleId!, s.name!, placeId));
+                        }
+                      });
+                    }
+                  },
                 ),
-              ).then((result) {
-                if (result != null) {
-                  final s = SampleDAO.fromJson(result);
-                  context
-                      .read<SampleBloc>()
-                      .add(EditSampleEvent(s.sampleId!, s.name!, placeId));
-                }
-              });
-            },
-          ),
         ),
         const Divider(
           color: Colors.grey,
